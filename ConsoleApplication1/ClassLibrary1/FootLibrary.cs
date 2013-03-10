@@ -111,7 +111,6 @@ namespace FootLibrary
 
     public abstract class PointSystem
     {
-        private bool IsHome;
         private ITotal Points;
 
         public ITotal InitialPoints
@@ -126,6 +125,7 @@ namespace FootLibrary
 
         public interface ITotal : IComparable
         {
+            
             public void Increment(ITotal with)
             {
                 
@@ -133,7 +133,7 @@ namespace FootLibrary
 
             public override String ToString()
             {
-                return " ";
+                return "Les points sont :";
             }
         }
     }
@@ -236,11 +236,14 @@ namespace FootLibrary
             }
             public PointTotal(Match m, bool home)
             {
-                points += m.HomeGoals - m.AwayGoals;
+                if(home==true)
+                    points += m.HomeGoals - m.AwayGoals;
+                else
+                    points += m.AwayGoals - m.HomeGoals;
             }
             public string ToString()
             {
-                return "";
+                return "Les points sont :" + points;
             }
         }
 
